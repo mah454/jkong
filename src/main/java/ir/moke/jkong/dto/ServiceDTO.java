@@ -19,7 +19,7 @@ public class ServiceDTO {
     @JsonProperty("path")
     private String path;
     @JsonProperty("enabled")
-    private boolean enabled;
+    private boolean enabled = true;
     @JsonProperty("tags")
     private List<String> tags;
     @JsonProperty("id")
