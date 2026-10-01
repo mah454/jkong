@@ -18,15 +18,15 @@ public interface KongService {
     @POST("/services")
     HttpResponse<ServiceDTO> create(ServiceDTO dto);
 
-    @DELETE("/services/{uid}")
-    HttpResponse<Void> delete(@PathParameter("uid") String uid);
+    @DELETE("/services/{serviceIdOrName}")
+    HttpResponse<Void> delete(@PathParameter("serviceIdOrName") String serviceIdOrName);
 
-    @GET("/services/{uid}")
-    HttpResponse<ServiceDTO> get(@PathParameter("uid") String uid);
+    @GET("/services/{serviceIdOrName}")
+    HttpResponse<ServiceDTO> get(@PathParameter("serviceIdOrName") String serviceIdOrName);
 
-    @PATCH("/services/{uid}")
-    HttpResponse<ServiceDTO> update(@PathParameter("uid") String uid, ServiceDTO dto);
+    @PATCH("/services/{serviceIdOrName}")
+    HttpResponse<ServiceDTO> update(@PathParameter("serviceIdOrName") String serviceIdOrName, ServiceDTO dto);
 
-    @PUT("/services/{uid}")
-    HttpResponse<ServiceDTO> upsert(@PathParameter("uid") String uid, ServiceDTO dto);
+    @PUT("/services/{serviceIdOrName}")
+    HttpResponse<ServiceDTO> upsert(@PathParameter("serviceIdOrName") String serviceIdOrName, ServiceDTO dto);
 }

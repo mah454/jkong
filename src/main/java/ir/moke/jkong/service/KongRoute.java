@@ -18,15 +18,15 @@ public interface KongRoute {
     @POST("/routes")
     HttpResponse<RouteDTO> create(RouteDTO dto);
 
-    @DELETE("/routes/{uid}")
-    HttpResponse<Void> delete(@PathParameter("uid") String uid);
+    @DELETE("/routes/{routeIdOrName}")
+    HttpResponse<Void> delete(@PathParameter("routeIdOrName") String routeIdOrName);
 
-    @GET("/routes/{uid}")
-    HttpResponse<RouteDTO> get(@PathParameter("uid") String uid);
+    @GET("/routes/{routeIdOrName}")
+    HttpResponse<RouteDTO> get(@PathParameter("routeIdOrName") String routeIdOrName);
 
-    @PATCH("/routes/{uid}")
-    HttpResponse<RouteDTO> update(@PathParameter("uid") String uid, RouteDTO dto);
+    @PATCH("/routes/{routeIdOrName}")
+    HttpResponse<RouteDTO> update(@PathParameter("routeIdOrName") String routeIdOrName, RouteDTO dto);
 
-    @PUT("/routes/{uid}")
-    HttpResponse<RouteDTO> upsert(@PathParameter("uid") String uid, RouteDTO dto);
+    @PUT("/routes/{routeIdOrName}")
+    HttpResponse<RouteDTO> upsert(@PathParameter("routeIdOrName") String routeIdOrName, RouteDTO dto);
 }
