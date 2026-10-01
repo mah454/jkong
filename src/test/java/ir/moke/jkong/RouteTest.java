@@ -23,7 +23,7 @@ public class RouteTest {
     public static void initialize() {
         System.out.println("Initialize dummy service");
         ServiceDTO dto = new ServiceDTO("test", "127.0.0.1", 8080, "/api/v1/test", true, List.of("test"), SERVICE_UUID);
-        HttpResponse<KongResponse<ServiceDTO>> response = kong.api(KongService.class).create(dto);
+        HttpResponse<ServiceDTO> response = kong.api(KongService.class).create(dto);
         Assertions.assertEquals(201, response.statusCode());
     }
 
@@ -38,9 +38,9 @@ public class RouteTest {
     @Order(0)
     public void checkCreate() throws JsonProcessingException {
         RouteDTO dto = new RouteDTO("test", List.of("localhost"), List.of("/api/sample"), new ServiceItemDTO(SERVICE_UUID), List.of("test", "T1", "T2"));
-        System.out.println(JsonUtils.toJson(dto));
-        HttpResponse<KongResponse<RouteDTO>> response = kong.api(KongRoute.class).create(dto);
+        HttpResponse<RouteDTO> response = kong.api(KongRoute.class).create(dto);
         Assertions.assertEquals(201, response.statusCode());
+        System.out.println(JsonUtils.toJson(response.body()));
     }
 
     @Test

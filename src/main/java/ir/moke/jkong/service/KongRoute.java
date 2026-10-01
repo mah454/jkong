@@ -16,7 +16,7 @@ public interface KongRoute {
                                               @QueryParameter("size") Integer size);
 
     @POST("/routes")
-    HttpResponse<KongResponse<RouteDTO>> create(RouteDTO dto);
+    HttpResponse<RouteDTO> create(RouteDTO dto);
 
     @DELETE("/routes/{uid}")
     HttpResponse<Void> delete(@PathParameter("uid") String uid);

@@ -16,7 +16,7 @@ public interface KongService {
                                                 @QueryParameter("size") Integer size);
 
     @POST("/services")
-    HttpResponse<KongResponse<ServiceDTO>> create(ServiceDTO dto);
+    HttpResponse<ServiceDTO> create(ServiceDTO dto);
 
     @DELETE("/services/{uid}")
     HttpResponse<Void> delete(@PathParameter("uid") String uid);

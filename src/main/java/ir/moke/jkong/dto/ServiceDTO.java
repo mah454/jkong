@@ -53,6 +53,21 @@ public class ServiceDTO {
     public ServiceDTO() {
     }
 
+    public ServiceDTO(String name, String host, Integer port, List<String> tags) {
+        this.name = name;
+        this.host = host;
+        this.port = port;
+        this.tags = tags;
+    }
+
+    public ServiceDTO(String name, String host, Integer port, List<String> tags, String id) {
+        this.name = name;
+        this.host = host;
+        this.port = port;
+        this.tags = tags;
+        this.id = id;
+    }
+
     public ServiceDTO(String name, String host, Integer port, String path, List<String> tags) {
         this.name = name;
         this.host = host;

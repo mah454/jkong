@@ -5,7 +5,7 @@
     <groupId>ir.moke</groupId>
     <artifactId>jkong</artifactId>
     <packaging>jar</packaging>
-    <version>0.1</version>
+    <version>0.1.1</version>
     <name>jkong</name>
 
     <url>https://github.com/mah454/jkong</url>

@@ -17,10 +17,11 @@ public class ServiceTest {
 
     @Test
     @Order(0)
-    public void checkCreate() {
-        ServiceDTO dto = new ServiceDTO("test", "127.0.0.1", 8080, "/api/v1/test", true, List.of("test"), UUID);
-        HttpResponse<KongResponse<ServiceDTO>> response = kong.api(KongService.class).create(dto);
+    public void checkCreate() throws JsonProcessingException {
+        ServiceDTO dto = new ServiceDTO("test", "127.0.0.1", 8080, List.of("test"), UUID);
+        HttpResponse<ServiceDTO> response = kong.api(KongService.class).create(dto);
         Assertions.assertEquals(201, response.statusCode());
+        System.out.println(JsonUtils.toJson(response.body()));
     }
 
     @Test
