@@ -110,6 +110,16 @@ public class RouteDTO {
 
     public RouteDTO(String name,
                     List<String> paths,
+                    List<String> tags,
+                    ServiceItemDTO service) {
+        this.name = name;
+        this.paths = paths;
+        this.tags = tags;
+        this.service = service;
+    }
+
+    public RouteDTO(String name,
+                    List<String> paths,
                     List<String> tags) {
         this.name = name;
         this.paths = paths;
