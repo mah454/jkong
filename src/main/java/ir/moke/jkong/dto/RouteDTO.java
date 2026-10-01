@@ -101,11 +101,19 @@ public class RouteDTO {
     public RouteDTO(String name,
                     List<String> hosts,
                     List<String> paths,
-                    ServiceItemDTO service) {
+                    List<String> tags) {
         this.name = name;
         this.hosts = hosts;
         this.paths = paths;
-        this.service = service;
+        this.tags = tags;
+    }
+
+    public RouteDTO(String name,
+                    List<String> paths,
+                    List<String> tags) {
+        this.name = name;
+        this.paths = paths;
+        this.tags = tags;
     }
 
     public Boolean getResponseBuffering() {
