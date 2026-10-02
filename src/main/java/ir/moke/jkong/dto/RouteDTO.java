@@ -6,6 +6,7 @@ import ir.moke.jkong.UnixTimestampDeserializer;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 public class RouteDTO {
     @JsonProperty("response_buffering")
@@ -29,7 +30,7 @@ public class RouteDTO {
     @JsonProperty("preserve_host")
     private Boolean preserveHost;
     @JsonProperty("headers")
-    private List<String> headers;
+    private Map<String, List<String>> headers;
     @JsonProperty("strip_path")
     private Boolean stripPath = false;
     @JsonProperty("destinations")
@@ -206,11 +207,11 @@ public class RouteDTO {
         this.preserveHost = preserveHost;
     }
 
-    public List<String> getHeaders() {
+    public Map<String, List<String>> getHeaders() {
         return headers;
     }
 
-    public void setHeaders(List<String> headers) {
+    public void setHeaders(Map<String, List<String>> headers) {
         this.headers = headers;
     }
 
