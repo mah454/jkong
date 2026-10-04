@@ -12,7 +12,7 @@ public interface KongService {
 
     @GET("/services")
     HttpResponse<KongResponse<ServiceDTO>> list(@QueryParameter("tags") List<String> tags,
-                                                @QueryParameter("offset") String offset,
+                                                @QueryParameter("offset") Integer offset,
                                                 @QueryParameter("size") Integer size);
 
     @POST("/services")
