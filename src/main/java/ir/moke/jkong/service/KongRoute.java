@@ -12,7 +12,7 @@ public interface KongRoute {
 
     @GET("/routes")
     HttpResponse<KongResponse<RouteDTO>> list(@QueryParameter("tags") List<String> tags,
-                                              @QueryParameter("offset") Integer offset,
+                                              @QueryParameter("offset") String offset,
                                               @QueryParameter("size") Integer size);
 
     @POST("/routes")
@@ -35,7 +35,7 @@ public interface KongRoute {
     @GET("/services/{serviceIdOrName}/routes")
     HttpResponse<KongResponse<RouteDTO>> list(@PathParameter("serviceIdOrName") String serviceIdOrName,
                                               @QueryParameter("tags") List<String> tags,
-                                              @QueryParameter("offset") Integer offset,
+                                              @QueryParameter("offset") String offset,
                                               @QueryParameter("size") Integer size);
 
     @POST("/services/{serviceIdOrName")
