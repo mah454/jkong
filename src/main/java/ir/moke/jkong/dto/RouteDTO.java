@@ -57,6 +57,26 @@ public class RouteDTO {
     public RouteDTO() {
     }
 
+    public RouteDTO(String id,
+                    String name,
+                    List<String> hosts,
+                    List<String> methods,
+                    List<String> paths,
+                    ServiceItemDTO service,
+                    List<String> tags,
+                    List<String> protocols,
+                    Boolean stripPath) {
+        this.id = id;
+        this.name = name;
+        this.tags = tags;
+        this.protocols = protocols;
+        this.stripPath = stripPath;
+        this.methods = methods;
+        this.hosts = hosts;
+        this.paths = paths;
+        this.service = service;
+    }
+
     public RouteDTO(String name,
                     List<String> hosts,
                     List<String> methods,
@@ -75,6 +95,20 @@ public class RouteDTO {
         this.service = service;
     }
 
+    public RouteDTO(String id,
+                    String name,
+                    List<String> hosts,
+                    List<String> paths,
+                    ServiceItemDTO service,
+                    List<String> tags) {
+        this.id = id;
+        this.name = name;
+        this.tags = tags;
+        this.hosts = hosts;
+        this.paths = paths;
+        this.service = service;
+    }
+
     public RouteDTO(String name,
                     List<String> hosts,
                     List<String> paths,
@@ -82,6 +116,20 @@ public class RouteDTO {
                     List<String> tags) {
         this.name = name;
         this.tags = tags;
+        this.hosts = hosts;
+        this.paths = paths;
+        this.service = service;
+    }
+
+    public RouteDTO(String id,
+                    String name,
+                    List<String> hosts,
+                    List<String> paths,
+                    ServiceItemDTO service,
+                    Boolean stripPath) {
+        this.id = id;
+        this.name = name;
+        this.stripPath = stripPath;
         this.hosts = hosts;
         this.paths = paths;
         this.service = service;
@@ -109,6 +157,18 @@ public class RouteDTO {
         this.tags = tags;
     }
 
+    public RouteDTO(String id,
+                    String name,
+                    List<String> paths,
+                    List<String> tags,
+                    ServiceItemDTO service) {
+        this.id = id;
+        this.name = name;
+        this.paths = paths;
+        this.tags = tags;
+        this.service = service;
+    }
+
     public RouteDTO(String name,
                     List<String> paths,
                     List<String> tags,
@@ -117,6 +177,16 @@ public class RouteDTO {
         this.paths = paths;
         this.tags = tags;
         this.service = service;
+    }
+
+    public RouteDTO(String id,
+                    String name,
+                    List<String> paths,
+                    List<String> tags) {
+        this.id = id;
+        this.name = name;
+        this.paths = paths;
+        this.tags = tags;
     }
 
     public RouteDTO(String name,

@@ -18,7 +18,7 @@ public class RateLimitConfig {
     @JsonProperty("hide_client_headers")
     private Boolean hideClientHeaders;
     @JsonProperty("limit_by")
-    private LimitBy limitBy = LimitBy.SERVICE;
+    private LimitBy limitBy;
     private String path;
     private LimitPolicy policy = LimitPolicy.LOCAL;
     private Integer year;

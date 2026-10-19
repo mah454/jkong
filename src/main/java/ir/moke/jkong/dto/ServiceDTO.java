@@ -60,7 +60,7 @@ public class ServiceDTO {
         this.tags = tags;
     }
 
-    public ServiceDTO(String name, String host, Integer port, List<String> tags, String id) {
+    public ServiceDTO(String id, String name, String host, Integer port, List<String> tags) {
         this.name = name;
         this.host = host;
         this.port = port;
@@ -76,14 +76,14 @@ public class ServiceDTO {
         this.tags = tags;
     }
 
-    public ServiceDTO(String name, String host, Integer port, String path, boolean enabled, List<String> tags, String id) {
+    public ServiceDTO(String id, String name, String host, Integer port, String path, boolean enabled, List<String> tags) {
+        this.id = id;
         this.name = name;
         this.host = host;
         this.port = port;
         this.path = path;
         this.enabled = enabled;
         this.tags = tags;
-        this.id = id;
     }
 
     public ServiceDTO(String name, String host, Integer port, String path, boolean enabled, List<String> tags) {
@@ -95,18 +95,8 @@ public class ServiceDTO {
         this.tags = tags;
     }
 
-    public ServiceDTO(String name, String protocol, String host, Integer port, String path, boolean enabled, List<String> tags, String id) {
-        this.name = name;
-        this.protocol = protocol;
-        this.host = host;
-        this.port = port;
-        this.path = path;
-        this.enabled = enabled;
-        this.tags = tags;
+    public ServiceDTO(String id, String name, String protocol, String host, Integer port, String path, boolean enabled, List<String> tags) {
         this.id = id;
-    }
-
-    public ServiceDTO(String name, String protocol, String host, Integer port, String path, boolean enabled, List<String> tags) {
         this.name = name;
         this.protocol = protocol;
         this.host = host;

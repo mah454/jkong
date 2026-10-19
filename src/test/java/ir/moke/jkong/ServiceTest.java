@@ -11,14 +11,12 @@ import java.net.http.HttpResponse;
 import java.util.List;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class ServiceTest {
-    private static final JKong kong = new JKong("127.0.0.1", 8001);
-    private static final String UUID = "6b13a2bf-2a8f-47fd-9e2e-d52582748def";
+public class ServiceTest extends KongTestUtils {
 
     @Test
     @Order(0)
     public void checkCreate() throws JsonProcessingException {
-        ServiceDTO dto = new ServiceDTO("test", "127.0.0.1", 8080, List.of("test"), UUID);
+        ServiceDTO dto = new ServiceDTO(SERVICE_UUID, "test", "127.0.0.1", 8080, List.of("test"));
         HttpResponse<ServiceDTO> response = kong.api(KongService.class).create(dto);
         Assertions.assertEquals(201, response.statusCode());
         System.out.println(JsonUtils.toJson(response.body()));
@@ -41,7 +39,7 @@ public class ServiceTest {
     @Test
     @Order(2)
     public void checkGet() {
-        HttpResponse<ServiceDTO> response = kong.api(KongService.class).get(UUID);
+        HttpResponse<ServiceDTO> response = kong.api(KongService.class).get(SERVICE_UUID);
         Assertions.assertEquals(200, response.statusCode());
     }
 
@@ -50,7 +48,7 @@ public class ServiceTest {
     public void checkUpdate() {
         ServiceDTO dto = new ServiceDTO();
         dto.setName("Changed-Name");
-        HttpResponse<ServiceDTO> response = kong.api(KongService.class).update(UUID, dto);
+        HttpResponse<ServiceDTO> response = kong.api(KongService.class).update(SERVICE_UUID, dto);
         Assertions.assertEquals(200, response.statusCode());
         Assertions.assertEquals("Changed-Name", response.body().getName());
     }
@@ -58,8 +56,8 @@ public class ServiceTest {
     @Test
     @Order(3)
     public void checkUpsert() {
-        ServiceDTO dto = new ServiceDTO("test2", "127.0.0.1", 8080, "/api/v1/test2", true, List.of("test2"), UUID);
-        HttpResponse<ServiceDTO> response = kong.api(KongService.class).upsert(UUID, dto);
+        ServiceDTO dto = new ServiceDTO(SERVICE_UUID, "test2", "127.0.0.1", 8080, "/api/v1/test2", true, List.of("test2"));
+        HttpResponse<ServiceDTO> response = kong.api(KongService.class).upsert(SERVICE_UUID, dto);
 
         Assertions.assertEquals(200, response.statusCode());
     }
@@ -67,7 +65,7 @@ public class ServiceTest {
     @Test
     @Order(999)
     public void checkDelete() {
-        HttpResponse<Void> response = kong.api(KongService.class).delete(UUID);
+        HttpResponse<Void> response = kong.api(KongService.class).delete(SERVICE_UUID);
         Assertions.assertEquals(204, response.statusCode());
     }
 }

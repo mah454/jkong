@@ -14,15 +14,12 @@ import java.net.http.HttpResponse;
 import java.util.List;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class RouteTest {
-    private static final JKong kong = new JKong("127.0.0.1", 8001);
-    private static final String SERVICE_UUID = "6b13a2bf-2a8f-47fd-9e2e-d52582748111";
-    private static String ROUTE_UUID;
+public class RouteTest extends KongTestUtils {
 
     @BeforeAll
     public static void initialize() {
         System.out.println("Initialize dummy service");
-        ServiceDTO dto = new ServiceDTO("test", "127.0.0.1", 8080, "/api/v1/test", true, List.of("test"), SERVICE_UUID);
+        ServiceDTO dto = new ServiceDTO(SERVICE_UUID, "test", "127.0.0.1", 8080, "/api/v1/test", true, List.of("test"));
         HttpResponse<ServiceDTO> response = kong.api(KongService.class).create(dto);
         Assertions.assertEquals(201, response.statusCode());
     }
@@ -49,14 +46,6 @@ public class RouteTest {
         HttpResponse<KongResponse<RouteDTO>> response = kong.api(KongRoute.class).list(List.of("test"), null, 1);
         Assertions.assertEquals(200, response.statusCode());
         Assertions.assertFalse(response.body().data().isEmpty());
-
-        ROUTE_UUID = response.body().data().getFirst().getId();
-
-        try {
-            System.out.println(JsonUtils.toJson(response.body()));
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @Test
@@ -81,7 +70,6 @@ public class RouteTest {
     public void checkUpsert() {
         RouteDTO dto = new RouteDTO("test2", List.of("other"), List.of("/api/new-path"), new ServiceItemDTO(SERVICE_UUID), List.of("test", "T4", "T5"));
         HttpResponse<RouteDTO> response = kong.api(KongRoute.class).upsert(ROUTE_UUID, dto);
-
         Assertions.assertEquals(200, response.statusCode());
     }
 
