@@ -8,19 +8,19 @@ public class RateLimitConfig {
     @JsonProperty("custom_key")
     private String customKey;
     @JsonProperty("error_code")
-    private int errorCode = 429;
+    private Integer errorCode;
     @JsonProperty("error_message")
     private String errorMessage;
     @JsonProperty("fault_tolerant")
-    private boolean faultTolerant = true;
+    private Boolean faultTolerant;
     @JsonProperty("header_name")
     private String headerName;
     @JsonProperty("hide_client_headers")
-    private boolean hideClientHeaders = false;
+    private Boolean hideClientHeaders;
     @JsonProperty("limit_by")
-    private LimitBy limitBy = LimitBy.CUSTOMER;
+    private LimitBy limitBy = LimitBy.SERVICE;
     private String path;
-    private LimitPolicy policy;
+    private LimitPolicy policy = LimitPolicy.LOCAL;
     private Integer year;
     private Integer month;
     private Integer day;
@@ -28,7 +28,7 @@ public class RateLimitConfig {
     private Integer minute;
     private Integer second;
     @JsonProperty("sync_rate")
-    private int syncRate = -1;
+    private Integer syncRate;
     private RouteItemDTO route;
     private ServiceItemDTO service;
 
@@ -48,11 +48,11 @@ public class RateLimitConfig {
         this.customKey = customKey;
     }
 
-    public int getErrorCode() {
+    public Integer getErrorCode() {
         return errorCode;
     }
 
-    public void setErrorCode(int errorCode) {
+    public void setErrorCode(Integer errorCode) {
         this.errorCode = errorCode;
     }
 
@@ -64,11 +64,11 @@ public class RateLimitConfig {
         this.errorMessage = errorMessage;
     }
 
-    public boolean isFaultTolerant() {
+    public Boolean getFaultTolerant() {
         return faultTolerant;
     }
 
-    public void setFaultTolerant(boolean faultTolerant) {
+    public void setFaultTolerant(Boolean faultTolerant) {
         this.faultTolerant = faultTolerant;
     }
 
@@ -80,11 +80,11 @@ public class RateLimitConfig {
         this.headerName = headerName;
     }
 
-    public boolean isHideClientHeaders() {
+    public Boolean getHideClientHeaders() {
         return hideClientHeaders;
     }
 
-    public void setHideClientHeaders(boolean hideClientHeaders) {
+    public void setHideClientHeaders(Boolean hideClientHeaders) {
         this.hideClientHeaders = hideClientHeaders;
     }
 
@@ -160,11 +160,11 @@ public class RateLimitConfig {
         this.second = second;
     }
 
-    public int getSyncRate() {
+    public Integer getSyncRate() {
         return syncRate;
     }
 
-    public void setSyncRate(int syncRate) {
+    public void setSyncRate(Integer syncRate) {
         this.syncRate = syncRate;
     }
 

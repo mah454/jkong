@@ -3,8 +3,8 @@ package ir.moke.jkong.dto.plugin.rate_limit;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum LimitBy {
-    CUSTOMER("customer"),
-    CUSTOMER_GROUP("customer-group"),
+//    CUSTOMER("customer"), //TODO , Implement customer api
+//    CUSTOMER_GROUP("customer-group"), //TODO , Implement customer group api
     CREDENTIAL("credential"),
     HEADER("header"),
     IP("ip"),

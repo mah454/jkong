@@ -9,12 +9,11 @@ import ir.moke.jkong.dto.ServiceItemDTO;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class RateLimitPlugin {
+public class RateLimitPluginDTO {
     private String id;
-    private String name = "rate-limiting";
     @JsonProperty("instance_name")
     private String instanceName;
-    RateLimitConfig config;
+    private RateLimitConfig config;
 
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
     @JsonProperty("updated_at")
@@ -30,10 +29,10 @@ public class RateLimitPlugin {
     private RouteItemDTO route;
     private ServiceItemDTO service;
 
-    public RateLimitPlugin() {
+    public RateLimitPluginDTO() {
     }
 
-    public RateLimitPlugin(RateLimitConfig config, boolean enabled, List<String> tags, RouteItemDTO route, ServiceItemDTO service) {
+    public RateLimitPluginDTO(RateLimitConfig config, boolean enabled, List<String> tags, RouteItemDTO route, ServiceItemDTO service) {
         this.config = config;
         this.enabled = enabled;
         this.tags = tags;
@@ -41,20 +40,26 @@ public class RateLimitPlugin {
         this.service = service;
     }
 
-    public RateLimitPlugin(RateLimitConfig config, boolean enabled, List<String> tags, ServiceItemDTO service) {
+    public RateLimitPluginDTO(RateLimitConfig config, boolean enabled, List<String> tags, ServiceItemDTO service) {
         this.config = config;
         this.enabled = enabled;
         this.tags = tags;
         this.service = service;
     }
 
-    public RateLimitPlugin(RateLimitConfig config, boolean enabled, ServiceItemDTO service) {
+    public RateLimitPluginDTO(RateLimitConfig config, boolean enabled, ServiceItemDTO service) {
         this.config = config;
         this.enabled = enabled;
         this.service = service;
     }
 
-    public RateLimitPlugin(RateLimitConfig config, ServiceItemDTO service) {
+    public RateLimitPluginDTO(String id, RateLimitConfig config, ServiceItemDTO service) {
+        this.id = id;
+        this.config = config;
+        this.service = service;
+    }
+
+    public RateLimitPluginDTO(RateLimitConfig config, ServiceItemDTO service) {
         this.config = config;
         this.service = service;
     }
@@ -68,7 +73,7 @@ public class RateLimitPlugin {
     }
 
     public String getName() {
-        return name;
+        return "rate-limiting";
     }
 
     public String getInstanceName() {

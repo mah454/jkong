@@ -1,0 +1,81 @@
+networks:
+  kong:
+    driver: bridge
+    name: kong
+    ipam:
+      config:
+        - subnet: 30.30.30.0/24
+          gateway: 30.30.30.1
+
+volumes:
+  postgres_data:
+    external: true
+
+services:
+  postgresql:
+    image: postgres:latest
+    container_name: postgresql
+    restart: always
+    hostname: postgresql
+    environment:
+      - POSTGRES_DB=admin
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=adminpass
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "admin"]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+    ports:
+      - "5432:5432"
+    networks:
+      - kong
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
+  kong-migrations:
+    image: kong:latest
+    container_name: kong-migrations
+    hostname: kong-migrations
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: postgresql
+      KONG_PG_USER: admin
+      KONG_PG_PASSWORD: adminpass
+      KONG_PROXY_ACCESS_LOG: /dev/stdout
+      KONG_PROXY_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_ACCESS_LOG: /dev/stdout
+      KONG_ADMIN_ERROR_LOG: /dev/stderr
+    networks:
+      - kong
+    command: kong migrations bootstrap
+
+
+  kong:
+    image: kong:latest
+    container_name: kong
+    hostname: kong
+    depends_on:
+      kong-migrations:
+        condition: service_completed_successfully
+      postgresql:
+        condition: service_healthy
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: postgresql
+      KONG_PG_USER: admin
+      KONG_PG_PASSWORD: adminpass
+      KONG_PROXY_LISTEN: 0.0.0.0:8000
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001
+      KONG_PROXY_ACCESS_LOG: /dev/stdout
+      KONG_PROXY_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_ACCESS_LOG: /dev/stdout
+      KONG_ADMIN_ERROR_LOG: /dev/stderr
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+    networks:
+      - kong
