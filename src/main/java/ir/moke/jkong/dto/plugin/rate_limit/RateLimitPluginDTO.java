@@ -59,6 +59,12 @@ public class RateLimitPluginDTO {
         this.service = service;
     }
 
+    public RateLimitPluginDTO(String id, RateLimitConfig config, RouteItemDTO route) {
+        this.id = id;
+        this.config = config;
+        this.route = route;
+    }
+
     public RateLimitPluginDTO(RateLimitConfig config, ServiceItemDTO service) {
         this.config = config;
         this.service = service;

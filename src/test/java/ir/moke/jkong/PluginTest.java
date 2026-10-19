@@ -1,13 +1,16 @@
 package ir.moke.jkong;
 
 import ir.moke.jkong.dto.KongResponse;
+import ir.moke.jkong.dto.RouteDTO;
 import ir.moke.jkong.dto.ServiceDTO;
 import ir.moke.jkong.dto.ServiceItemDTO;
 import ir.moke.jkong.dto.plugin.rate_limit.LimitPolicy;
 import ir.moke.jkong.dto.plugin.rate_limit.RateLimitConfig;
 import ir.moke.jkong.dto.plugin.rate_limit.RateLimitPluginDTO;
 import ir.moke.jkong.service.KongRateLimitPlugin;
+import ir.moke.jkong.service.KongRoute;
 import ir.moke.jkong.service.KongService;
+import ir.moke.utils.JsonUtils;
 import org.junit.jupiter.api.*;
 
 import java.net.http.HttpResponse;
@@ -72,6 +75,19 @@ public class PluginTest {
         RateLimitPluginDTO dto = new RateLimitPluginDTO(new RateLimitConfig(LimitPolicy.LOCAL, 50), new ServiceItemDTO(SERVICE_UUID));
         HttpResponse<RateLimitPluginDTO> response = kong.api(KongRateLimitPlugin.class).upsert(PLUGIN_UUID, dto);
         Assertions.assertEquals(200, response.statusCode());
+    }
+
+    @Test
+    @Order(1)
+    public void checkOnRoute() {
+        RouteDTO routeDTO = new RouteDTO("test", List.of("localhost"), List.of("/api/sample"), new ServiceItemDTO(SERVICE_UUID), List.of("test", "T1", "T2"));
+        HttpResponse<RouteDTO> routeResponse = kong.api(KongRoute.class).create(routeDTO);
+        Assertions.assertEquals(201, routeResponse.statusCode());
+        /*----------------------*/
+
+        RateLimitPluginDTO pluginDTO = new RateLimitPluginDTO(PLUGIN_UUID, new RateLimitConfig(LimitPolicy.LOCAL, 1), new ServiceItemDTO(routeDTO.getId()));
+        HttpResponse<RateLimitPluginDTO> response = kong.api(KongRateLimitPlugin.class).create(pluginDTO);
+        Assertions.assertEquals(201, response.statusCode());
     }
 
     @Test
