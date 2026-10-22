@@ -53,6 +53,13 @@ public class RateLimitPluginDTO {
         this.service = service;
     }
 
+    public RateLimitPluginDTO(RateLimitConfig config, boolean enabled, RouteItemDTO route) {
+        this.config = config;
+        this.enabled = enabled;
+        this.route = route;
+    }
+
+
     public RateLimitPluginDTO(String id, RateLimitConfig config, ServiceItemDTO service) {
         this.id = id;
         this.config = config;
@@ -68,6 +75,11 @@ public class RateLimitPluginDTO {
     public RateLimitPluginDTO(RateLimitConfig config, ServiceItemDTO service) {
         this.config = config;
         this.service = service;
+    }
+
+    public RateLimitPluginDTO(RateLimitConfig config, RouteItemDTO route) {
+        this.config = config;
+        this.route = route;
     }
 
     public String getId() {
