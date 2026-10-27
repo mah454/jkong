@@ -5,8 +5,6 @@ Kong api gateway java client
 usage :
 
 ```java
-import ir.moke.jkong.service.KongRateLimitPlugin;
-
 private static final JKong kong = new JKong("127.0.0.1", 8001);
 
 public void sample() {
