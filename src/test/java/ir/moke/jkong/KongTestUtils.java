@@ -14,6 +14,7 @@ public class KongTestUtils {
     public static final String SERVICE_UUID = "6b13a2bf-2a8f-47fd-9e2e-d52582748111";
     public static final String PLUGIN_UUID = "098f387e-338b-427b-9aaa-efd0dcced222";
     public static final String ROUTE_UUID = "c0677aff-877e-4626-8630-53b830d1e333";
+    public static final String UPSTREAM_UUID = "953708a4-5800-4626-b0af-6305840368ee";
 
     public static void kongStartUp() {
         System.out.println("Initialize dummy service");
@@ -34,8 +35,8 @@ public class KongTestUtils {
         kong.api(KongService.class).delete(SERVICE_UUID);
     }
 
-    static void main() {
-        kongStartUp();
-        kongCleanUp();
-    }
+//    static void main() {
+//        kongStartUp();
+//        kongCleanUp();
+//    }
 }
