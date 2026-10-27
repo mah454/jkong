@@ -15,6 +15,7 @@ public class KongTestUtils {
     public static final String PLUGIN_UUID = "098f387e-338b-427b-9aaa-efd0dcced222";
     public static final String ROUTE_UUID = "c0677aff-877e-4626-8630-53b830d1e333";
     public static final String UPSTREAM_UUID = "953708a4-5800-4626-b0af-6305840368ee";
+    public static final String TARGET_UUID = "81000f96-df91-4e59-82a3-23cf97a177dc";
 
     public static void kongStartUp() {
         System.out.println("Initialize dummy service");
